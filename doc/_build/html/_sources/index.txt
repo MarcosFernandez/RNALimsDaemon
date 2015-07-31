@@ -6,15 +6,15 @@
 RNA Lims Daemon
 ===============
 
-RNA Lims Daemon is a GNU/Linux daemon which updates a Lims Database using REST web services.
+RNA Lims Daemon is a GNU/Linux daemon which updates rna seq pipeline results to a Lims Database using REST web services.
 
 
 1. Install
 ----------
 
-Installation is straightforward. Just download `RNA Lims Daemon`_ and run the script.
+Installation is straightforward. Just download `RNA Lims Daemon`_ set up the configuration file (section 2) and run the script.
 
-.. _RNA Lims Daemon: http://daemon.lims
+.. _RNA Lims Daemon: https://github.com/MarcosFernandez/RNALimsDaemon
 
 
 2. Configuration file
@@ -35,13 +35,13 @@ RNA Lims Daemon uses two important files.
 
     Do not forget to create the configuration file.
 
-
 The configuration file must be a json file with two entries. ::
 
     {
       "file_lims":"/path/to/rna_lims",        
       "file_log":"/path/to/rna_lims.log"
     }
+
 
 3. Daemon usage
 ---------------
@@ -75,14 +75,14 @@ To stop the daemon just run: ::
 3.1 Restart
 ```````````
 
-To stap and start the daemon run: ::
+To stop and start the daemon run: ::
 
     daemon_rna_lims.py restart
 
 
 .. note::
 
-    In **file_log** are registered all the commands triggered by the daemon.
+    In **file_log** are registered all the actions triggered by the daemon.
 
 
 

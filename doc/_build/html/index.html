@@ -44,10 +44,10 @@
             
   <div class="section" id="rna-lims-daemon">
 <h1>RNA Lims Daemon<a class="headerlink" href="#rna-lims-daemon" title="Permalink to this headline">¶</a></h1>
-<p>RNA Lims Daemon is a GNU/Linux daemon which updates a Lims Database using REST web services.</p>
+<p>RNA Lims Daemon is a GNU/Linux daemon which updates rna seq pipeline results to a Lims Database using REST web services.</p>
 <div class="section" id="install">
 <h2>1. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p>Installation is straightforward. Just download <a class="reference external" href="http://daemon.lims">RNA Lims Daemon</a> and run the script.</p>
+<p>Installation is straightforward. Just download <a class="reference external" href="https://github.com/MarcosFernandez/RNALimsDaemon">RNA Lims Daemon</a> set up the configuration file (section 2) and run the script.</p>
 </div>
 <div class="section" id="configuration-file">
 <h2>2. Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
@@ -100,12 +100,12 @@ to the <strong>lims database</strong>.</p>
 </div>
 <div class="section" id="restart">
 <h3>3.1 Restart<a class="headerlink" href="#restart" title="Permalink to this headline">¶</a></h3>
-<p>To stap and start the daemon run:</p>
+<p>To stop and start the daemon run:</p>
 <div class="highlight-python"><pre>daemon_rna_lims.py restart</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In <strong>file_log</strong> are registered all the commands triggered by the daemon.</p>
+<p class="last">In <strong>file_log</strong> are registered all the actions triggered by the daemon.</p>
 </div>
 </div>
 </div>
