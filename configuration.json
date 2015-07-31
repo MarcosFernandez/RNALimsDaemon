@@ -1,0 +1,4 @@
+{
+    "file_lims":"/path/to/rna_lims",        
+    "file_log":"/path/to/rna_lims.log"
+}
