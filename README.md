@@ -25,6 +25,8 @@ Documentation can be found at [RNA Lims Daemon Documentation] (http://statgen.cn
 Changelog:
 ==========
 
+    0.1 Absolut fields added.
+        Lims sort vector of input parameters files to force coordination between Lane GTF stats, Lane Gene Counts and Remove duplicates files.
     0.0 Initial Release  
 
 

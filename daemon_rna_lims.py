@@ -31,6 +31,7 @@ class DaemonRnaLims(Daemon):
         file_lims = config["file_lims"]       
         file_log = config["file_log"]
         failed_uploads = []
+        already_processed = []
         
         if os.path.exists(file_lims):
             with open(file_lims, "r") as rnaLims:
@@ -38,14 +39,18 @@ class DaemonRnaLims(Daemon):
                     #1.Create object class LimsRnaSeq File
                     limsRnaSeq = LimsRnaSeq()
                     directory = line.strip('\n')
-                    results = limsRnaSeq.run(directory=directory)
-                    if results != "":
-                        time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-                        logError.append("[%s] Lims updating Error %s"%(time,results))
-                        failed_uploads.append(directory)
-                    else:
-                        time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-                        logError.append("[%s] Lims updating succesfully executed." %(time))
+
+                    if directory not in already_processed:
+                        results = limsRnaSeq.run(directory=directory)
+                        if results != "":
+                            time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+                            logError.append("[%s] Lims updating Error %s"%(time,results))
+                            failed_uploads.append(directory)
+                        else:
+                            time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+                            logError.append("[%s] Lims updating succesfully executed." %(time))
+ 
+                        already_processed.append(directory)
 
             if len(logError) != 0:
                 with open(file_log, "a") as log:
@@ -63,7 +68,8 @@ class DaemonRnaLims(Daemon):
      
 if __name__ == "__main__":
     configuration = os.path.dirname(os.path.realpath(__file__)) + "/configuration.json"
-    daemon = DaemonRnaLims(pidfile='/tmp/daemon-example.pid',stdout="/dev/stdout",stderr="/dev/stderr")
+    #daemon = DaemonRnaLims(pidfile='/tmp/daemon-example.pid',stdout="/dev/stdout",stderr="/dev/stderr")
+    daemon = DaemonRnaLims(pidfile='/tmp/daemon-example.pid')
     daemon.setConfiguration(configuration)
 
     if len(sys.argv) == 2:
