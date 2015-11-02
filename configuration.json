@@ -1,4 +1,4 @@
 {
-  "file_lims":"/scratch/devel/tmp/rna_lims",        
-  "file_log":"/scratch/devel/tmp/rna_lims.log"
+  "file_lims":"/path/to/file/rna_lims",        
+  "file_log":"/path/to/file/rna_lims.log"
 }
