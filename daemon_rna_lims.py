@@ -6,6 +6,7 @@ from limsRnaSeq import LimsRnaSeq
 from time import gmtime, strftime
 
 import os,json
+import re
      
 class DaemonRnaLims(Daemon):
 
@@ -38,10 +39,13 @@ class DaemonRnaLims(Daemon):
                 for line in rnaLims:
                     #1.Create object class LimsRnaSeq File
                     limsRnaSeq = LimsRnaSeq()
-                    directory = line.strip('\n')
+                    cleanLines = line.strip('\n') 
+                    fields = re.split(' ',cleanLines)                   
+                    directory = fields[0]
+                    filterCriteria = fields[1]   
 
                     if directory not in already_processed:
-                        results = limsRnaSeq.run(directory=directory)
+                        results = limsRnaSeq.run(directory=directory,filterCriteria=filterCriteria)
                         if results != "":
                             time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
                             logError.append("[%s] Lims updating Error %s"%(time,results))
