@@ -46,8 +46,6 @@ class LimsRnaSeq():
         self.library = None         #Library name to be uploaded to lims database
         self.flowcell = None        #Flowcell name to be uploaded to lims database
         self.lane = None            #Lane number to be uploaded to lims database
-
-        self.no_filter = False      #Do not take no filtered files
      
         self.rna_mapping_dict =  {
                                   'total_reads' : None,
@@ -139,6 +137,23 @@ class LimsRnaSeq():
                                   'mapping_ids' : None
         }
 
+        self.runConfig()
+
+    def runConfig(self):
+        """ Check for config file exitance and get User and Key """
+        try:
+            username = ""
+            key = "" 
+            with open('config') as file_config:
+                for line in file_config:
+                    cleanLine = line.strip('\n') 
+                    fields = re.split(' ',cleanLines)                   
+                    username = fields[0]
+                    key = fields[1]   
+
+            self.headers = {'content-type': 'application/json', 'Authorization':'ApiKey %s:%s' %(username,key)}   
+        except IOError as e:
+            print "Unable to open config file. You need a config file to have acces to lims database. Write in this file a username and a password." 
 
     def delStats(self):
         """ Reset stats values """
