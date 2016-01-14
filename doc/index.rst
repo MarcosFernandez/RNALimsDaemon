@@ -20,20 +20,31 @@ Installation is straightforward. Just download `RNA Lims Daemon`_ set up the con
 2. Configuration file
 ---------------------
 
-RNA Lims Daemon uses two important files.
+RNA Lims Daemon uses three important files.
 
     1. **File Lims** A file were each line is a mapping directory of the rna pipeline. This directory contains the data to be parsed and updated to Lims Database through REST web services.
                      When all lines are processed then the file is removed.
 
     2. **File log** A file which contains a register of the actions performed by the daemon.
 
+    3. **config** A file where is stored the lims username and its key. All modifications of the CNAG lims database should be owned by a user.
+
 .. warning::
+
+    **Files to be created**
     
-    Configuration file name and location
+    **1. Configuration file name and location**
 
     The configuration file name must be ``configuration.json`` and must be at the same location as the RNA Lims Daemon scripts.
 
     Do not forget to create the configuration file.
+
+    **2. config file**
+
+    ``config`` file must be located at the same directory where RNA Lims Daemon scripts are located. 
+
+    Do not forget to create ``config`` file.
+    
 
 The configuration file must be a json file with two entries. ::
 
@@ -41,6 +52,10 @@ The configuration file must be a json file with two entries. ::
       "file_lims":"/path/to/rna_lims",        
       "file_log":"/path/to/rna_lims.log"
     }
+
+The config file must be a simple line. ::
+
+    limsUserName limsUserKey
 
 
 3. Daemon usage

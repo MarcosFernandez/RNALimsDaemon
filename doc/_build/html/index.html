@@ -51,7 +51,7 @@
 </div>
 <div class="section" id="configuration-file">
 <h2>2. Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
-<p>RNA Lims Daemon uses two important files.</p>
+<p>RNA Lims Daemon uses three important files.</p>
 <blockquote>
 <div><ol class="arabic">
 <li><dl class="first docutils">
@@ -62,13 +62,19 @@
 </li>
 <li><p class="first"><strong>File log</strong> A file which contains a register of the actions performed by the daemon.</p>
 </li>
+<li><p class="first"><strong>config</strong> A file where is stored the lims username and its key. All modifications of the CNAG lims database should be owned by a user.</p>
+</li>
 </ol>
 </div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p>Configuration file name and location</p>
+<p><strong>Files to be created</strong></p>
+<p><strong>1. Configuration file name and location</strong></p>
 <p>The configuration file name must be <tt class="docutils literal"><span class="pre">configuration.json</span></tt> and must be at the same location as the RNA Lims Daemon scripts.</p>
-<p class="last">Do not forget to create the configuration file.</p>
+<p>Do not forget to create the configuration file.</p>
+<p><strong>2. config file</strong></p>
+<p><tt class="docutils literal"><span class="pre">config</span></tt> file must be located at the same directory where RNA Lims Daemon scripts are located.</p>
+<p class="last">Do not forget to create <tt class="docutils literal"><span class="pre">config</span></tt> file.</p>
 </div>
 <p>The configuration file must be a json file with two entries.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -76,6 +82,9 @@
   <span class="s">&quot;file_log&quot;</span><span class="p">:</span><span class="s">&quot;/path/to/rna_lims.log&quot;</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<p>The config file must be a simple line.</p>
+<div class="highlight-python"><pre>limsUserName limsUserKey</pre>
 </div>
 </div>
 <div class="section" id="daemon-usage">
