@@ -628,20 +628,22 @@ class LimsRnaSeq():
                     raise Exception(json_content['error_message'] + "\n" + json_content['traceback'])
       
 
-    def run(self,directory=None,filterCriteria=false):
+    def run(self,directory=None,filterCriteria=False):
         """Run Method to process all files present in a given directory"""
         #1 Get files from RNASeq Mapping Directory
-
-        gtf_stats_search = "/*.filtered.gtf.stats.json"
-        gtf_counts_txt = "/*.filtered.gtf.counts.txt"
+        gtf_stats_search = ""
+        gtf_counts_txt = ""
 
         if filterCriteria ==  "nofiltered" :
-            gtf_stats_search = "/*[0-9].gtf.stats.json"
-            gtf_counts_txt = "/*[0-9].gtf.counts.txt"
+            gtf_stats_search += "/*[0-9].gtf.stats.json"
+            gtf_counts_txt += "/*[0-9].gtf.counts.txt"
+        else:
+            gtf_stats_search += "/*.filtered.gtf.stats.json"
+            gtf_counts_txt += "/*.filtered.gtf.counts.txt"
 
-        laneGtfStats = sorted(glob.glob(args.directory + gtf_stats_search))
-        laneGeneCounts = sorted(glob.glob(args.directory + gtf_counts_txt))
-        rmDupsFiles = sorted(glob.glob(args.directory + "/*.rmdup.lane.flagstat"))
+        laneGtfStats = sorted(glob.glob(directory + gtf_stats_search))
+        laneGeneCounts = sorted(glob.glob(directory + gtf_counts_txt))
+        rmDupsFiles = sorted(glob.glob(directory + "/*.rmdup.lane.flagstat"))
 
         rmDupsLibrary = {}
 
